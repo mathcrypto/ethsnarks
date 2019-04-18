@@ -47,13 +47,15 @@ EdDSA_HashRAM_gadget::EdDSA_HashRAM_gadget(
 {
 }
 
-
+//generate_r1cs_constraints() function adds the R1CS constraints corresponding to the circuits defined earlier.
 void EdDSA_HashRAM_gadget::generate_r1cs_constraints()
 {
     m_R_x_bits.generate_r1cs_constraints();
     m_A_x_bits.generate_r1cs_constraints();
     m_hash_RAM.generate_r1cs_constraints();
 }
+
+//generate_r1cs_witness() function assumes that we've already set the public value and the witness value. It then computes the inferred witness values for the intermediate variables 
 
 
 void EdDSA_HashRAM_gadget::generate_r1cs_witness()
