@@ -88,10 +88,14 @@ PureEdDSA::PureEdDSA(
 ) :
     GadgetT(in_pb, annotation_prefix),
 
-    // IsValid(R)
+    // IsValid(R) to verify that R is a valid point on the curve
+  
+
     m_validator_R(in_pb, in_params, in_R.x, in_R.y, FMT(this->annotation_prefix, ".validator_R")),
 
-    // lhs = ScalarMult(B, s)
+    // lhs = ScalarMult(B, s) where A=sB and s=H0,.........,Hb-1(k) is the least significant bbits of H(k) interpreted as integer in little-endian
+
+
     m_lhs(in_pb, in_params, in_base.x, in_base.y, in_s, FMT(this->annotation_prefix, ".lhs")),
 
     // hash_RAM = H(R, A, M)
