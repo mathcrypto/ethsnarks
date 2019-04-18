@@ -73,8 +73,14 @@ const VariableArrayT& EdDSA_HashRAM_gadget::result()
 
 
 // --------------------------------------------------------------------
+//  One of the parameters of the EdDSA algorithm is the "prehash" function.  This may be the identity function, resulting in an
+   //algorithm called PureEdDSA, or a collision-resistant hash function such as SHA-512, resulting in an algorithm called HashEdDSA.
 
-//we define the protoboard and the variables we need in the signature S=r+H(R,A,M)s mod l. 
+//we define the protoboard and the variables we need in the signature S=r+H(R,A,M)s mod l for the pureEddsa algorithm
+    // In PureEdDSA algorithm, there is no message compression function (M = H'(m)) to compress m.
+
+// Ed25519 and Ed448 are PureEdDSA variants 
+
 
 PureEdDSA::PureEdDSA(
     ProtoboardT& in_pb,
@@ -144,7 +150,7 @@ void PureEdDSA::generate_r1cs_witness()
 
 // --------------------------------------------------------------------
 
-
+//HashEdDSA or edDSA requires an extra step to compress the message before hashing, this is: M = H'(m)
 EdDSA::EdDSA(
     ProtoboardT& in_pb,
     const Params& in_params,
