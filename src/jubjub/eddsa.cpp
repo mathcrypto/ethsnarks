@@ -7,8 +7,21 @@
 namespace ethsnarks {
 
 namespace jubjub {
-//we define the protoboard and the variables we need in the hash function H(R,A,M) which will be needed afterwards for the signature S
 
+//Private key
+//An EdDSA private key is a b-bit string k which should be chosen uniformly at random.
+
+//Public key
+//The corresponding public key is a curve point AE(Fq), encoded in bbits. A=sB, where s=H0,.........,Hb-1(k) is the least significant bbits of H(k) interpreted as integer in little-endian
+    
+//Signature
+//An EdDSA signature on a message m by public key A is the pair (R,S), encoded in 2bbits, of a curve point RE(Fq) and an integer 0<S<l satisfying the verification equation, where 
+//R=rB for r=H(Hb,......,H2b-1(k),M) and S=r+H(R,A,M)s mod l. 
+
+//Verification:
+//2cSB=2c(r+H(R,A,M)s)B= 2crB+2cH(R,A,M)sB= 2cR+2cH(R,A,M)A
+
+//we define the protoboard and the variables we need in the hash function H(R,A,M) which will be needed afterwards for the signature S
 EdDSA_HashRAM_gadget::EdDSA_HashRAM_gadget(
     ProtoboardT& in_pb,
     const Params& in_params,
