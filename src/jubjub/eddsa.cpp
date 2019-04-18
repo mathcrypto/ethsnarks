@@ -102,9 +102,13 @@ PureEdDSA::PureEdDSA(
     m_hash_RAM(in_pb, in_params, in_R, in_A, in_msg, FMT(this->annotation_prefix, ".hash_RAM")),
 
     // At = ScalarMult(A,hash_RAM)
+    // since Base point B has order l so B mod l = 1 which means A mod l= s.B mod l = s
+    // Which means H(R,A,M)s = H(R,A,M)A
+
     m_At(in_pb, in_params, in_A.x, in_A.y, m_hash_RAM.result(), FMT(this->annotation_prefix, ".At = A * hash_RAM")),
 
-    // rhs = PointAdd(R, At)
+    // rhs = PointAdd(R, At) which represents the signature
+    
     m_rhs(in_pb, in_params, in_R.x, in_R.y, m_At.result_x(), m_At.result_y(), FMT(this->annotation_prefix, ".rhs"))
 { }
 
