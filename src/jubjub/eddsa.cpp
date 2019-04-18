@@ -1,12 +1,13 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
-
+//include babyjub instead of jubjub 
 #include "jubjub/eddsa.hpp"
 #include "utils.hpp"
 
 namespace ethsnarks {
 
 namespace jubjub {
+//we define the protoboard and the variables we need in the hash function H(R,A,M) which will be needed afterwards for the signature S
 
 EdDSA_HashRAM_gadget::EdDSA_HashRAM_gadget(
     ProtoboardT& in_pb,
