@@ -74,15 +74,15 @@ const VariableArrayT& EdDSA_HashRAM_gadget::result()
 
 // --------------------------------------------------------------------
 
-
+//we define the protoboard and the variables we need in the signature S=r+H(R,A,M)s mod l. 
 
 PureEdDSA::PureEdDSA(
     ProtoboardT& in_pb,
     const Params& in_params,
     const EdwardsPoint& in_base,    // B
-    const VariablePointT& in_A,     // A
-    const VariablePointT& in_R,     // R
-    const VariableArrayT& in_s,     // s
+    const VariablePointT& in_A,     // A=s.B
+    const VariablePointT& in_R,     // R=rB for r=H(Hb,......,H2b-1(k),m) 
+    const VariableArrayT& in_s,     // s=H0,.........,Hb-1(k) is the least significant bbits of H(k) interpreted as integer in little-endian
     const VariableArrayT& in_msg,   // m
     const std::string& annotation_prefix
 ) :
